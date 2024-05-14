@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { data } from "../../data";
-import Layout from "../../layout";
-import { Carousel, Button, Input } from "antd";
+import { Button, Card, Image } from "antd";
 import { EditOutlined, LeftOutlined, UploadOutlined } from "@ant-design/icons";
 import { SingleAnimal, UpdateAnimal } from "../../../actions/addAnimal";
 import InputField from "../../../UI/InputField";
@@ -30,7 +28,8 @@ const RecordDetail = () => {
     updateAnimal();
   };
 
-  // console.log("from updatedData",from);
+  const files = updatedData?.files || [];
+  // console.log("updatedData", updatedData);
 
   useEffect(() => {
     setUpdatedData(data);
@@ -39,12 +38,7 @@ const RecordDetail = () => {
   return (
     <>
       <Link to={"/admin/animal-records"}>
-        <Button
-          type="primary"
-          className="mb-5"
-          size="large"
-          icon={<LeftOutlined />}
-        >
+        <Button type="primary" className="mb-5" size="large" icon={<LeftOutlined />}>
           Back
         </Button>
       </Link>
@@ -54,12 +48,7 @@ const RecordDetail = () => {
 
         <div>
           {!updation ? (
-            <Button
-              size="large"
-              className="me-2"
-              icon={<EditOutlined />}
-              onClick={magic}
-            >
+            <Button size="large" className="me-2" icon={<EditOutlined />} onClick={magic}>
               Edit
             </Button>
           ) : (
@@ -79,57 +68,6 @@ const RecordDetail = () => {
 
       {updatedData && (
         <div className="row">
-          {/* <div className="col-md-6">
-                        <Carousel autoplay autoplaySpeed={2000}>
-                            {data.img.map((image, index) => (
-                                <div key={index}>
-                                    <img src={image} className='rounded-3' alt={`Image ${index}`} style={{ width: '100%', height: '300px' }} />
-                                </div>
-                            ))}
-                        </Carousel>
-                    </div> */}
-
-          {/* <div className="col-md-6">
-                        <div className="row mx-2">
-
-                            <div className="col-md-6 mt-2">
-                                <div style={{ paddingRight: '10px' }}>
-                                    <label className='form-label'>Camper Name</label>
-                                    <Input size="large" placeholder="large size" type ={} name={""} onChange={changeHandler} from={from} value={data.title} />
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 mt-2">
-                                <div>
-                                    <label className='form-label'>Mircochip Number</label>
-                                    <Input size="large" placeholder="large size" type ={} name={""} onChange={changeHandler} from={from} value={data.microchip} />
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 mt-2">
-                                <div style={{ paddingRight: '10px' }}>
-                                    <label className='form-label'>Gender</label>
-                                    <Input size="large" placeholder="large size" type ={} name={""} onChange={changeHandler} from={from} value={data.gender} />
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 mt-2">
-                                <div style={{ paddingRight: '10px' }}>
-                                    <label className='form-label'>Adopter Name</label>
-                                    <Input size="large" placeholder="large size" type ={} name={""} onChange={changeHandler} from={from} value={data.adopterName} />
-                                </div>
-                            </div>
-
-                            <div className="col-md-6 mt-2">
-                                <div style={{ paddingRight: '10px' }}>
-                                    <label className='form-label'>Arrived Date</label>
-                                    <Input size="large" placeholder="large size" type ={} name={""} onChange={changeHandler} from={from} value={data.date} />
-                                </div>
-                            </div>
-
-                        </div>
-                    </div> */}
-
           <h4>Animal Information</h4>
           <InputField
             label={"Source of Burro"}
@@ -598,6 +536,19 @@ const RecordDetail = () => {
           />
         </div>
       )}
+
+      <div className="row mt-2">
+        {files?.map((x, index) => (
+          <div className="col-md-3" key={index}>
+            <Image
+              // width={250}
+              height={200}
+              src={`http://localhost:5000/${x}`}
+              alt={`File ${index + 1}`}
+            />
+          </div>
+        ))}
+      </div>
     </>
   );
 };

@@ -30,7 +30,7 @@ const Employees = () => {
     setSearchData(newData);
   };
 
-  console.log(searchData);
+  // console.log(searchData);
 
   return (
     <>
@@ -48,11 +48,7 @@ const Employees = () => {
 
       <div>
         <div className="my-3" style={{ maxWidth: "300px", minWidth: "180px" }}>
-          <Input
-            size="large"
-            placeholder="Search..."
-            onChange={handleSearchChange}
-          />
+          <Input size="large" placeholder="Search..." onChange={handleSearchChange} />
         </div>
 
         {loading
@@ -99,9 +95,7 @@ const Employees = () => {
               </Card>
             ))}
 
-        {loading
-          ? ""
-          : (!users || users.length === 0) && <h3>No Staff Register</h3>}
+        {loading ? "" : (!users || users.length === 0) && <h3>No Staff Register</h3>}
       </div>
     </>
   );

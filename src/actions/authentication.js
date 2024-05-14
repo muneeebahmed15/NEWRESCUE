@@ -92,7 +92,6 @@ export const RegisterStaff = () => {
   });
 
   // console.log(data);
-  
 
   const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -117,10 +116,7 @@ export const RegisterStaff = () => {
       formData.append("address", data.address || "");
       formData.append("DOB", data.DOB || "");
       formData.append("emergencyContactName", data.emergencyContactName || "");
-      formData.append(
-        "emergencyContactNumber",
-        data.emergencyContactNumber || ""
-      );
+      formData.append("emergencyContactNumber", data.emergencyContactNumber || "");
       formData.append("role", data.role || "");
       formData.append("otherRole", data.otherRole || "");
       formData.append("availability", JSON.stringify(data.availability) || "");

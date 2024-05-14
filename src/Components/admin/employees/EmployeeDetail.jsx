@@ -11,15 +11,11 @@ const EmployeeDetail = () => {
   const { data, loading } = SingleUser(id);
   // const {loading: deleteLoading, deleteUser} = DeleteUser();
 
+  console.log(data);
   return (
     <>
       <Link to={"/admin/employees"}>
-        <Button
-          type="primary"
-          className="mb-3"
-          size="large"
-          icon={<LeftOutlined />}
-        >
+        <Button type="primary" className="mb-3" size="large" icon={<LeftOutlined />}>
           Back
         </Button>
       </Link>
@@ -52,11 +48,7 @@ const EmployeeDetail = () => {
 
             <InputField label={"Phone"} value={data.phone} from={"empDet"} />
 
-            <InputField
-              label={"Address"}
-              value={data.address}
-              from={"empDet"}
-            />
+            <InputField label={"Address"} value={data.address} from={"empDet"} />
 
             <InputField
               label={"Date of Birth"}
@@ -77,11 +69,7 @@ const EmployeeDetail = () => {
             />
 
             {data.role === "Other" ? (
-              <InputField
-                label={"Role"}
-                value={data.otherRole}
-                from={"empDet"}
-              />
+              <InputField label={"Role"} value={data.otherRole} from={"empDet"} />
             ) : (
               <InputField label={"Role"} value={data.role} from={"empDet"} />
             )}

@@ -9,8 +9,6 @@ const InputField = ({
   value,
   onChange,
   from,
-  readOnly,
-  updation,
   picture,
 }) => {
   return (

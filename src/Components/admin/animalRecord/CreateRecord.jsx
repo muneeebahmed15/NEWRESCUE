@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../../layout";
 import { Button, message, Steps, Form, Input, Card, Select, Upload } from "antd";
-import { AddRecord } from "../../../actions/addAnimal";
+import { AddRecord, useAddRecord } from "../../../actions/addAnimal";
 import InputField from "../../../UI/InputField";
 
 const { Step } = Steps;
@@ -11,7 +11,7 @@ const CreateRecord = () => {
   // console.log(currentYear);
   const [current, setCurrent] = useState(0);
 
-  const { addrecord, data, loading, handleFile, handleChange } = AddRecord();
+  const { addRecord, loading, data, handleFile, handleChange } = useAddRecord();
 
   const next = () => {
     setCurrent(current + 1);
@@ -54,16 +54,13 @@ const CreateRecord = () => {
                 onChange={handleChange}
               />
 
-              <div className="col-md-6 rightSpace mt-2">
-                <label className="form-label">Animal Photo</label>
-                <Input
-                  size="large"
-                  type="file"
-                  placeholder=""
-                  name="animalPhoto"
-                  onChange={handleFile}
-                />
-              </div>
+              <InputField
+                label={"Animal Photo"}
+                type={"file"}
+                placeholder={""}
+                name={"files"}
+                onChange={handleFile}
+              />
 
               <div className="col-md-6 rightSpace mt-2">
                 <label className="form-label">Animal Gender</label> <br />
@@ -83,9 +80,9 @@ const CreateRecord = () => {
               <InputField
                 label={"Animal Age"}
                 type={"date"}
-                placeholder={"Animal Age"}
+                placeholder={""}
                 name={"animalAge"}
-                value={data.camperAge}
+                value={data.animalAge}
                 onChange={handleChange}
               />
 
@@ -125,17 +122,14 @@ const CreateRecord = () => {
                 onChange={handleChange}
               />
 
-              <div className="col-12 mt-3">
-                <label className="form-label">Notes</label>
-                <Input
-                  size="large"
-                  type="text"
-                  placeholder="Notes"
-                  name="animalNotes"
-                  value={data.animalNotes}
-                  onChange={handleChange}
-                />
-              </div>
+              <InputField
+                label={"Notes"}
+                type={"text"}
+                placeholder={"Notes"}
+                name={"animalNotes"}
+                value={data.animalNotes}
+                onChange={handleChange}
+              />
             </div>
           </Card>
         </>
@@ -342,17 +336,14 @@ const CreateRecord = () => {
                 onChange={handleChange}
               />
 
-              <div className="col-12 mt-3">
-                <label className="form-label">Notes</label>
-                <Input
-                  size="large"
-                  type="text"
-                  placeholder="Notes"
-                  name="careNotes"
-                  value={data.careNotes}
-                  onChange={handleChange}
-                />
-              </div>
+              <InputField
+                label={"Notes"}
+                type={"text"}
+                placeholder={"Notes"}
+                name={"careNotes"}
+                value={data.careNotes}
+                onChange={handleChange}
+              />
             </div>
           </Card>
         </>
@@ -386,7 +377,7 @@ const CreateRecord = () => {
                 type={"file"}
                 placeholder={""}
                 // picture="abc"
-                name={"touchPicture"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -409,7 +400,7 @@ const CreateRecord = () => {
                 label={"Brush/Groom Photo"}
                 type={"file"}
                 placeholder={""}
-                name={"brushPicture"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -432,7 +423,7 @@ const CreateRecord = () => {
                 label={"Halter Photo"}
                 type={"file"}
                 placeholder={""}
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -455,7 +446,7 @@ const CreateRecord = () => {
                 label={"Lead Rope On Photo"}
                 type={"file"}
                 placeholder={""}
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -478,7 +469,7 @@ const CreateRecord = () => {
                 label={"Lead Small Area Photo"}
                 type={"file"}
                 placeholder={""}
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -501,7 +492,7 @@ const CreateRecord = () => {
                 label={"Lead Large Area Photo"}
                 type={"file"}
                 placeholder={""}
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -524,7 +515,7 @@ const CreateRecord = () => {
                 label={"Lead in Pasture(outside pen)"}
                 type={"file"}
                 placeholder={""}
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -550,7 +541,7 @@ const CreateRecord = () => {
                 type={"file"}
                 placeholder={""}
                 picture="abc"
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -573,8 +564,8 @@ const CreateRecord = () => {
                 label={"Touch Feet Photo"}
                 type={"file"}
                 placeholder={""}
-                picture="abc"
-                name={"animalPhoto"}
+                // picture="abc"
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -598,7 +589,7 @@ const CreateRecord = () => {
                 type={"file"}
                 placeholder={""}
                 picture="abc"
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -621,7 +612,7 @@ const CreateRecord = () => {
                 label={"Pick Out Photo"}
                 type={"file"}
                 placeholder={""}
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -644,7 +635,7 @@ const CreateRecord = () => {
                 label={"Trailer Load Photo"}
                 type={"file"}
                 placeholder={""}
-                name={"animalPhoto"}
+                name={"files"}
                 onChange={handleFile}
               />
 
@@ -935,7 +926,7 @@ const CreateRecord = () => {
         </Steps>
 
         <div style={{ marginTop: 24 }}>
-          <Form name="animalForm" initialValues={{ remember: true }} onFinish={addrecord}>
+          <Form name="animalForm" initialValues={{ remember: true }} onFinish={addRecord}>
             {steps[current].content}
             <div style={{ marginTop: 24 }}>
               {current > 0 && (

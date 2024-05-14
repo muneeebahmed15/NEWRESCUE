@@ -9,7 +9,7 @@ export const AddRecord = () => {
   const [data, setData] = useState({
     burroSource: "",
     animalName: "",
-    animalPhoto: null,
+    // animalPhoto: null,
     animalGender: "",
     animalAge: "",
     microchip: "",
@@ -49,10 +49,10 @@ export const AddRecord = () => {
     //training
 
     touch: "",
-    touchPicture: null,
+    // touchPicture: null,
 
     brush: "",
-    brushPicture: null,
+    // brushPicture: null,
 
     halter: "",
     // halterPicture: null,
@@ -113,7 +113,7 @@ export const AddRecord = () => {
   };
 
   const handleFile = (e) => {
-    setData({ ...data, animalPhoto: e.target.files[0] });
+    setData({ ...data, files: e.target.files });
   };
 
   console.log(data);
@@ -275,4 +275,158 @@ export const UpdateAnimal = (id) => {
     magic,
     changeHandler,
   };
+};
+
+export const useAddRecord = () => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({
+    burroSource: "",
+    animalName: "",
+    // animalPhoto: null,
+    animalGender: "",
+    animalAge: "",
+    microchip: "",
+    freezeMark: "",
+    ageNotes: "",
+    animalYear: "",
+    animalNotes: "",
+
+    //care record
+    vaccination: "",
+    nextVaccination: "",
+    vaccinationSerial: "",
+
+    addRabies: "",
+    nextRabies: "",
+    rabiesSerial: "",
+
+    farrier: "",
+    nextFarrie: "",
+    farrierName: "",
+    otherFarrierName: "",
+
+    deWorm: "",
+    nextDeWorm: "",
+    deWormBrand: "",
+
+    sandClear: "",
+    nextSandClear: "",
+    healthCertificate: "",
+
+    coggins: "",
+
+    gelded: "",
+
+    careNotes: "",
+
+    //training
+
+    touch: "",
+    // touchPicture: null,
+
+    brush: "",
+    // brushPicture: null,
+
+    halter: "",
+    // halterPicture: null,
+
+    leadRope: "",
+    // leadRopePicture: null,
+
+    leadInSmall: "",
+    // leadInSmallPicture: null,
+
+    leadInLarge: "",
+    // leadInLargePicture: null,
+
+    leadInPasture: "",
+    // leadInPasturePicture: null,
+
+    tie: "",
+    // tiePicture: null,
+
+    touchFeet: "",
+    // touchFeetPicture: null,
+
+    pickupFeet: "",
+    // pickupFeetPicture: null,
+
+    pickoutFeet: "",
+    // pickoutFeetPicture: null,
+
+    trailerLoad: "",
+    // tailerLoadPicture: null,
+
+    trainingNotes: "",
+
+    //adoptionInformation
+    adoptionDate: "",
+    adopterName: "",
+    adopterEmail: "",
+    adopterPhone: "",
+    adopterStreet: "",
+    adopterCity: "",
+    aopterState: "",
+    adopterZip: "",
+    adopterSource: "",
+
+    brandInspection: "",
+    halterColor: "",
+    otherHalterColor: "",
+    halterSize: "",
+    adopterNotes: "",
+
+    files: [""],
+  });
+
+  console.log(data);
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleFile = (e) => {
+    const newFiles = [...data.files]; // Create a copy of the existing files array
+    newFiles.push(...e.target.files); // Append newly selected files to the copied array
+    setData({ ...data, files: newFiles }); // Update the state with the new files array
+  };
+
+  const addRecord = async () => {
+    setLoading(true);
+    try {
+      const formData = new FormData();
+
+      // Append data fields
+      Object.entries(data).forEach(([key, value]) => {
+        if (key === "files") {
+          // Skip files field
+          return;
+        }
+        formData.append(key, value);
+      });
+
+      // Append files array separately
+      data.files.forEach((file, index) => {
+        formData.append(`file`, file);
+      });
+
+      const res = await axios.post("add-animal", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(res);
+      if (res.status === 200) {
+        toast.success("Camper Added");
+        // Redirect logic here
+      }
+    } catch (error) {
+      console.error("Error adding camper:", error);
+      // Handle error
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { addRecord, loading, data, handleFile, handleChange };
 };
