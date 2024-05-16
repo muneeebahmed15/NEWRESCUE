@@ -366,9 +366,10 @@ export const useAddRecord = () => {
     adopterPhone: "",
     adopterStreet: "",
     adopterCity: "",
-    aopterState: "",
+    adopterState: "",
     adopterZip: "",
     adopterSource: "",
+    sourceComment: "",
 
     brandInspection: "",
     halterColor: "",
@@ -376,8 +377,10 @@ export const useAddRecord = () => {
     halterSize: "",
     adopterNotes: "",
 
-    files: [""],
+    files: [],
   });
+
+  const router = useNavigate();
 
   console.log(data);
 
@@ -415,10 +418,10 @@ export const useAddRecord = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res);
+      // console.log(res);
       if (res.status === 200) {
         toast.success("Camper Added");
-        // Redirect logic here
+        router("/admin/animal-records");
       }
     } catch (error) {
       console.error("Error adding camper:", error);

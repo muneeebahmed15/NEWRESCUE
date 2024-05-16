@@ -33,7 +33,7 @@ const AnimalRecord = () => {
     setSearchData(newData);
   };
 
-  console.log(searchData);
+  // console.log(searchData);
 
   return (
     <>

@@ -29,7 +29,7 @@ const RecordDetail = () => {
   };
 
   const files = updatedData?.files || [];
-  // console.log("updatedData", updatedData);
+  console.log("updatedData", updatedData);
 
   useEffect(() => {
     setUpdatedData(data);
@@ -77,7 +77,6 @@ const RecordDetail = () => {
             onChange={changeHandler}
             from={from}
           />
-          {/* <InputField label={"Animal Name"} type ={} name={""} onChange={changeHandler} from={from} value={updatedData.}/> */}
           <InputField
             label={"Animal Name"}
             type={"text"}
@@ -150,7 +149,7 @@ const RecordDetail = () => {
             name={"vaccination"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.vaccination)}
+            value={updatedData.vaccination}
           />
           <InputField
             label={"Next Vaccination"}
@@ -158,7 +157,7 @@ const RecordDetail = () => {
             name={"nextVaccination"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.nextVaccination)}
+            value={updatedData.nextVaccination}
           />
           <InputField
             label={"Vaccination Serial  #"}
@@ -174,7 +173,7 @@ const RecordDetail = () => {
             name={"addRabies"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.addRabies)}
+            value={updatedData.addRabies}
           />
           <InputField
             label={"Next Rabies"}
@@ -182,7 +181,7 @@ const RecordDetail = () => {
             name={"nextRabies"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.nextRabies)}
+            value={updatedData.nextRabies}
           />
           <InputField
             label={"Rabies Serial #"}
@@ -198,7 +197,7 @@ const RecordDetail = () => {
             name={"farrier"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.farrier)}
+            value={updatedData.farrier}
           />
           <InputField
             label={"Next Farrier"}
@@ -206,12 +205,12 @@ const RecordDetail = () => {
             name={"nextFarrie"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.farrier)}
+            value={updatedData.farrier}
           />
           {updatedData.farrierName !== "Other" ? (
             <InputField
               label={"Farrier Name"}
-              type={"date"}
+              type={"text"}
               name={"farrierName"}
               onChange={changeHandler}
               from={from}
@@ -220,7 +219,7 @@ const RecordDetail = () => {
           ) : (
             <InputField
               label={"Farrier Name"}
-              type={"date"}
+              type={"text"}
               name={"otherFarrierName"}
               onChange={changeHandler}
               from={from}
@@ -233,7 +232,7 @@ const RecordDetail = () => {
             name={"deWorm"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.deWorm)}
+            value={updatedData.deWorm}
           />
           <InputField
             label={"Next De Worm"}
@@ -241,11 +240,11 @@ const RecordDetail = () => {
             name={"nextDeWorm"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.deWorm)}
+            value={updatedData.deWorm}
           />
           <InputField
             label={"De Worm Brand"}
-            type={"date"}
+            type={"text"}
             name={"deWormBrand"}
             onChange={changeHandler}
             from={from}
@@ -257,7 +256,7 @@ const RecordDetail = () => {
             name={"sandClear"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.sandClear)}
+            value={updatedData.sandClear}
           />
           <InputField
             label={"Next Sand Clear"}
@@ -265,7 +264,7 @@ const RecordDetail = () => {
             name={"nextSandClear"}
             onChange={changeHandler}
             from={from}
-            value={formatCreatedAtDate(updatedData.nextSandClear)}
+            value={updatedData.nextSandClear}
           />
           <InputField
             label={"Health Certificate"}
@@ -273,7 +272,7 @@ const RecordDetail = () => {
             name={"healthCertificate"}
             onChange={changeHandler}
             from={from}
-            value={updatedData.healthCertificate}
+            value={formatCreatedAtDate(updatedData.healthCertificate)}
           />
           <InputField
             label={"Coggins"}
