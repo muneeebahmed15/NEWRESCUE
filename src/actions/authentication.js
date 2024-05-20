@@ -20,20 +20,48 @@ export const UserLogin = () => {
 
   const login = async () => {
     setLoading(true);
-    try {
-      const res = await axios.post("login", data);
+    // try {
+    // const res = await axios.post("login", data);
 
-      if (res.status === 200) {
-        setAuth(res.data);
-        router("/admin/dashboard");
-        Cookies.set("auth", JSON.stringify(res.data));
-        toast.success("Login Successful");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+    // if (res.status === 200) {
+    //   setAuth(res.data);
+    //   router("/admin/dashboard");
+    //   Cookies.set("auth", JSON.stringify(res.data));
+    //   toast.success("Login Successful");
+    // }
+
+    // }
+    // catch (error) {
+    //   console.log(error);
+    // } finally {
+    //   setLoading(false);
+    // }
+    const url = `https://rescue-three.vercel.app/v1/rescue/login`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => response.json());
+    // .then((data) => {
+    //   if (data.status) {
+    //     setuserLogedIn(true);
+    //     //console.log('Login clicked');
+    //     localStorage.setItem("isUserloggeIn", true);
+    //     navigate("/home", { replace: true });
+    //   } else {
+    //     setErrorMessage(data.message);
+    //     setShowError(true);
+    //     // alert(data.message);
+    //   }
+    // })
+    console.log(response).catch((error) => {
+      setErrorMessage("Failed To Login Due TO Internet Connection or Server Down");
+      setShowError(true);
+      //console.log(error)
+    });
   };
 
   const logout = () => {
