@@ -44,19 +44,21 @@ export const UserLogin = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((response) => response.json());
-    // .then((data) => {
-    //   if (data.status) {
-    //     setuserLogedIn(true);
-    //     //console.log('Login clicked');
-    //     localStorage.setItem("isUserloggeIn", true);
-    //     navigate("/home", { replace: true });
-    //   } else {
-    //     setErrorMessage(data.message);
-    //     setShowError(true);
-    //     // alert(data.message);
-    //   }
-    // })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // if (data.status) {
+        //   setuserLogedIn(true);
+        //   //console.log('Login clicked');
+        //   localStorage.setItem("isUserloggeIn", true);
+        //   navigate("/home", { replace: true });
+        // } else {
+        //   setErrorMessage(data.message);
+        //   setShowError(true);
+        //   // alert(data.message);
+        // }
+      });
     console.log(response).catch((error) => {
       setErrorMessage("Failed To Login Due TO Internet Connection or Server Down");
       setShowError(true);
