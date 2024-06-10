@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   //       https://rescue-three.vercel.app
-  axios.defaults.baseURL = "http://localhost:5001/v1/rescue";
+  axios.defaults.baseURL = "http://93.127.197.218:5001/v1/rescue";
   axios.defaults.headers.common["Cookies"] = auth.token;
   // axios.defaults.withCredentials = true;
 
