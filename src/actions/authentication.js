@@ -24,6 +24,7 @@ export const UserLogin = () => {
       const res = await axios.post("login", data);
       if (res.status === 200) {
         setAuth(res.data);
+
         router("/admin/dashboard");
         Cookies.set("auth", JSON.stringify(res.data));
         toast.success("Login Successful");
